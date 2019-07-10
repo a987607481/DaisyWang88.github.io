@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src="vue.js"></script>
+<style>
+.inner{
+    height: 150px;
+    background-color: blue;
+}
+.outer{
+    padding: 40px;
+    background-color: brown;
+}
+
+</style>
+<body>
+    <!--  使用stop阻止冒泡 -->
+    <div id="app">
+    <!-- 
+     <div class="inner" @click="btn"> 
+         <input type="button" value="按钮" @click.stop="btn1">
+     </div> -->
+    
+      <!--  阻止默认事件 -->
+     <!-- <a href="http://www.baidu.com" @click.prevent="btn2">百度垃圾</a> -->
+     
+     <!--  先触发capture -->
+     <!-- <div id="app">
+            <div class="inner" @click.capture="btn"> 
+                <input type="button" value="按钮" @click="btn1">
+     </div>  -->
+
+     <!-- self:只有点击当前才会触发  -->
+     <!-- <div id="app">
+            <div class="inner" @click.self="btn"> 
+                <input type="button" value="按钮" @click="btn1">
+     </div>  -->
+      <!-- .once:只触发一次  -->
+     <a href="http://www.baidu.com" @click.prevent.once="btn2">百度垃圾</a> 
+
+     <!-- 演示stop和self的区别-->
+     <!-- <div class="outer" @click ="btn4"> 
+     <div class="inner" @click="btn"> 
+            <input type="button" value="按钮" @click.stop="btn1">
+        </div>
+        </div> -->
+
+        <div class="outer" @click ="btn4"> 
+        <div class="inner" @click.self="btn"> 
+        <input type="button" value="按钮" @click="btn1">
+        </div>
+        </div>
+
+
+    </div>
+
+    <script>
+     var vm = new Vue({
+       el:"#app",
+       data:{
+
+       },
+       methods:{
+        btn(){
+            console.log('触发了inner div的点击事件')
+        },
+        btn1(){
+            console.log('触发了button的点击事件')
+        },
+        btn2(){
+            console.log('触发了baidu的点击事件')
+        },
+        btn4(){
+            console.log('触发了最后的点击事件')
+        }
+       }
+
+
+    })
+    </script>
+</body>
+</html>

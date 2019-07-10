@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+    <p> {{ msg | msgFormat('邪恶', '123') | test }} </p>
+    </div>
+
+    <script>
+
+        Vue.filter('msgFormat',function(msg, arg, arg2){
+            //replace 方法，第一个参数除了可以写字符串外，还可以写一个正则表达式，g：全局
+                return  msg.replace(/滑稽/g,arg+arg2)
+
+        })
+
+        Vue.filter('test',function(msg){
+            //replace 方法，第一个参数除了可以写字符串外，还可以写一个正则表达式，g：全局
+                return  msg+'hahahah'
+
+        })
+    
+    var vm = new Vue({
+         el:"#app",
+         data:{
+            msg:'滑稽树上滑稽果，滑稽树下你和我'
+
+         },
+         methods: {
+             
+         },
+
+
+    })
+    </script>
+</body>
+</html>
